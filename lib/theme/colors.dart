@@ -13,3 +13,5 @@ const kAppBarColorDark = Colors.black54;
 const kWhiteColor = Colors.white;
 
 const kGrey = Colors.grey;
+
+const kHomepageBG = Colors.white70;

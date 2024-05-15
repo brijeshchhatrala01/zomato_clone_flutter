@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../custom_widgets/profile_appbar.dart';
-import '../../custom_widgets/search_appbar.dart';
+import '../../../appbar/profile_appbar.dart';
+import '../../../appbar/search_appbar.dart';
+
 
 class DiningPage extends StatefulWidget {
   const DiningPage({super.key});

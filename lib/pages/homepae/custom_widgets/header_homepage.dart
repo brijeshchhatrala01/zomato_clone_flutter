@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../custom_widgets/custom_widgets.dart';
 
+//homepage header with particular food dish
 class HeaderHomepage extends StatelessWidget {
   const HeaderHomepage({
     super.key,

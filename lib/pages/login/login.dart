@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
+import 'package:zomato_clone_flutter/service/auth_service.dart';
+import 'package:zomato_clone_flutter/service/firebase_auth/authcheck.dart';
 import 'package:zomato_clone_flutter/theme/colors.dart';
 
 import '../../custom_widgets/custom_widgets.dart';
-import '../homepae/homepage.dart';
 
+//login page
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -12,10 +15,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool showPassword = true;
+  void goToAuthCheck() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FirebaseAuthCheck(),
+      ),
+    );
+  }
+
+  //moble number controller
+  final _mobileNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    //get device height & width
     double displayWidth = MediaQuery.of(context).size.width;
     double displayHeight = MediaQuery.of(context).size.height;
 
@@ -23,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: ListView(
           children: [
+            //header image
             Image.asset(
               'Assets/ic_login.png',
               width: displayWidth,
@@ -36,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   const Center(
                     child: Text(
-                      "India's #1 Food Delivery \n         and Dining App",
+                      "India's #1 Food Delivery \n\t\t\t\t\t\t and Dining App",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
@@ -56,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   smallSizedBox,
-                  TextField(
+                  TextFormField(
+                    controller: _mobileNumberController,
                     style: const TextStyle(fontSize: 18),
                     keyboardType: TextInputType.number,
                     textAlignVertical: TextAlignVertical.center,
@@ -64,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 18),
-                        prefixText: "+91 ",
+                        prefixText: "+91\t",
                         prefixStyle:
                             const TextStyle(color: kBlackColor, fontSize: 18),
                         hintText: "Enter Phone Number",
@@ -91,12 +107,15 @@ class _LoginPageState extends State<LoginPage> {
                               padding: MaterialStateProperty.all(
                                   const EdgeInsets.all(15))),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Homepage(),
-                              ),
-                            );
+                            // Navigator.pushReplacement(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const Homepage(),
+                            //   ),
+                            // );
+                            FirebaseAuthService().signInWithPhone(
+                                _mobileNumberController.text.trim(), context);
+                            print(_mobileNumberController.text);
                           },
                           child: const Text(
                             "Continue",
@@ -119,15 +138,21 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       const Spacer(),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: kGrey),
-                            borderRadius: BorderRadius.circular(100)),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                            backgroundColor: kWhiteColor,
-                            backgroundImage: AssetImage('Assets/ic_google.png'),
+                      GestureDetector(
+                        onTap: () => FirebaseAuthService()
+                            .signInWithGoogleAccount(context)
+                            .whenComplete(() => goToAuthCheck()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: kGrey),
+                              borderRadius: BorderRadius.circular(100)),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundColor: kWhiteColor,
+                              backgroundImage:
+                                  AssetImage('Assets/ic_google.png'),
+                            ),
                           ),
                         ),
                       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../pages/homepae/profile/profile.dart';
 import '../theme/colors.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -10,6 +10,7 @@ class ProfileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: kWhiteColor,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +67,13 @@ class ProfileAppBar extends StatelessWidget {
               icon: const Icon(Icons.translate_rounded),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(),
+                    ));
+              },
               icon: const CircleAvatar(
                 child: Text('B'),
               ),

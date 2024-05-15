@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zomato_clone_flutter/theme/colors.dart';
 
-
 class SearchAppBar extends StatelessWidget {
   const SearchAppBar(
       {super.key,
@@ -15,6 +14,7 @@ class SearchAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: kWhiteColor,
       pinned: true,
       title: Container(
