@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:motion_toast/motion_toast.dart';
 import 'package:zomato_clone_flutter/custom_widgets/profile_appbar.dart';
 import 'package:zomato_clone_flutter/custom_widgets/search_appbar.dart';
 import 'package:zomato_clone_flutter/pages/homepae/custom_widgets/header_homepage.dart';

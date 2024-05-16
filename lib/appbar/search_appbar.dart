@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zomato_clone_flutter/theme/colors.dart';
 
-
 class SearchAppBar extends StatelessWidget {
+  final String hintText;
   const SearchAppBar(
       {super.key,
+      required this.hintText,
       required TextEditingController searchFood,
       required this.onPressed})
       : _searchFood = searchFood;
@@ -15,6 +16,7 @@ class SearchAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: kWhiteColor,
       pinned: true,
       title: Container(
@@ -32,10 +34,10 @@ class SearchAppBar extends StatelessWidget {
                   autofocus: false,
                   controller: _searchFood,
                   obscureText: false,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Search Pav Bhaji",
-                    prefixIcon: Icon(Icons.search),
+                    hintText: hintText,
+                    prefixIcon: const Icon(Icons.search),
                   ),
                 ),
               ),

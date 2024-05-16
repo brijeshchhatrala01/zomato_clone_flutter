@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:zomato_clone_flutter/pages/homepae/location/location.dart';
 import '../pages/homepae/profile/profile.dart';
 import '../theme/colors.dart';
 
@@ -6,6 +9,15 @@ class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({
     super.key,
   });
+
+  void goToLocation(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LocationPage(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +32,23 @@ class ProfileAppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(const SnackBar(content: Text('Location')));
-                },
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_sharp,
-                      size: 36,
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      goToLocation(context);
+                    },
+                    icon: const Icon(
+                      Icons.location_on,
+                      size: 32,
+                      color: Colors.red,
                     ),
-                    Column(
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      goToLocation(context);
+                    },
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -56,15 +73,18 @@ class ProfileAppBar extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
           Row(children: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.translate_rounded),
+              icon: const Icon(
+                Icons.translate_rounded,
+                color: Colors.red,
+              ),
             ),
             IconButton(
               onPressed: () {

@@ -20,6 +20,7 @@ class _DiningPageState extends State<DiningPage> {
         slivers: [
           const ProfileAppBar(),
           SearchAppBar(
+            hintText: '',
             searchFood: _searchController,
             onPressed: () {},
           )
